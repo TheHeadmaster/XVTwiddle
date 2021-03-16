@@ -49,6 +49,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="cd ..&#xD;&#xA;powershell.exe -ExecutionPolicy Unrestricted -file pre-build.ps1" />
     <Exec Command="copy &quot;$(SolutionDir)CHANGELOG.md&quot; /b &quot;$(SolutionDir)XVTwiddle\Resources\Documents\CHANGELOG.md&quot; /y" />
   </Target>
 </Project>
