@@ -5,16 +5,74 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XVTwiddle", "XVTwiddle\XVTwiddle.csproj", "{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}"
 EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "XVTwiddle.Installer", "XVTwiddle.Installer\XVTwiddle.Installer.wixproj", "{683537F5-C7AE-4592-A620-3C86382A604D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82CCD4EB-3A82-4202-BE17-CA6F33CA8569}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitmoji-changelogrc = .gitmoji-changelogrc
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XVTwiddle.Testing", "XVTwiddle.Testing\XVTwiddle.Testing.csproj", "{64CAD200-ADC6-469E-910A-E268986FB61E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		DebugInInstallFolder|Any CPU = DebugInInstallFolder|Any CPU
+		DebugInInstallFolder|x86 = DebugInInstallFolder|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+		ReleaseInstallFolder|Any CPU = ReleaseInstallFolder|Any CPU
+		ReleaseInstallFolder|x86 = ReleaseInstallFolder|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Debug|x86.Build.0 = Debug|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.DebugInInstallFolder|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.DebugInInstallFolder|Any CPU.Build.0 = Debug|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.DebugInInstallFolder|x86.ActiveCfg = Debug|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.DebugInInstallFolder|x86.Build.0 = Debug|Any CPU
 		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Release|x86.ActiveCfg = Release|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.Release|x86.Build.0 = Release|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.ReleaseInstallFolder|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.ReleaseInstallFolder|Any CPU.Build.0 = Release|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.ReleaseInstallFolder|x86.ActiveCfg = Release|Any CPU
+		{9B4FC60C-B6F4-4060-B9DF-1748B118BEEC}.ReleaseInstallFolder|x86.Build.0 = Release|Any CPU
+		{683537F5-C7AE-4592-A620-3C86382A604D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.Debug|x86.ActiveCfg = Debug|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.Debug|x86.Build.0 = Debug|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.DebugInInstallFolder|Any CPU.ActiveCfg = DebugInInstallFolder|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.DebugInInstallFolder|x86.ActiveCfg = DebugInInstallFolder|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.DebugInInstallFolder|x86.Build.0 = DebugInInstallFolder|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.Release|Any CPU.ActiveCfg = Release|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.Release|x86.ActiveCfg = Release|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.Release|x86.Build.0 = Release|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.ReleaseInstallFolder|Any CPU.ActiveCfg = ReleaseInstallFolder|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.ReleaseInstallFolder|x86.ActiveCfg = ReleaseInstallFolder|x86
+		{683537F5-C7AE-4592-A620-3C86382A604D}.ReleaseInstallFolder|x86.Build.0 = ReleaseInstallFolder|x86
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Debug|x86.Build.0 = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.DebugInInstallFolder|Any CPU.ActiveCfg = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.DebugInInstallFolder|Any CPU.Build.0 = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.DebugInInstallFolder|x86.ActiveCfg = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.DebugInInstallFolder|x86.Build.0 = Debug|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Release|x86.ActiveCfg = Release|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.Release|x86.Build.0 = Release|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.ReleaseInstallFolder|Any CPU.ActiveCfg = Release|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.ReleaseInstallFolder|Any CPU.Build.0 = Release|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.ReleaseInstallFolder|x86.ActiveCfg = Release|Any CPU
+		{64CAD200-ADC6-469E-910A-E268986FB61E}.ReleaseInstallFolder|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

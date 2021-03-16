@@ -22,7 +22,7 @@ namespace XVTwiddle
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

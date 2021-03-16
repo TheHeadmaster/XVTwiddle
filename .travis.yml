@@ -1,0 +1,9 @@
+solution: XVTwiddle.sln
+os: windows
+language: csharp
+mono: none
+
+script:
+- choco install dotnetcore-sdk
+- dotnet --version
+- dotnet restore
