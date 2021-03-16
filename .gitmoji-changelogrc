@@ -1,172 +1,172 @@
 {
-	"project": {
-		"name": "xvtwiddle",
-		"description": "All in one program to create mods for Xenoverse 2.",
-		"version": "1.2.2-alpha"
-	},
-	"commitMapping": [
-		{
-			"group": "features",
-			"label": "New Features",
-			"emojis": [
-				"sparkles"
-			]
-		},
-		{
-			"group": "changed",
-			"label": "Optimization",
-			"emojis": [
-				"art",
-				"zap",
-				"fire",
-				"truck",
-				"pencil2",
-				"recycle"
-			]
-		},
-		{
-			"group": "fixed",
-			"label": "Bug Fixes",
-			"emojis": [
-				"bug",
-				"ambulance"
-			]
-		},
-		{
-			"group": "visual",
-			"label": "Visual Changes",
-			"emojis": [
-				"lipstick",
-				"dizzy",
-				"iphone",
-				"children_crossing",
-				"speech_balloon",
-				"wheelchair",
-				"bento"
-			]
-		},
-		{
-			"group": "breaking_changes",
-			"label": "Breaking and Major Changes",
-			"emojis": [
-				"boom",
-				"wastebasket",
-				"building_construction",
-				"tada",
-				"rocket"
-			]
-		},
-		{
-			"group": "issues",
-			"label": "Known Issues",
-			"emojis": [
-				"goal_net"
+  "project": {
+    "name": "xvtwiddle",
+    "description": "All in one program to create mods for Xenoverse 2.",
+    "version": "1.1.1-alpha"
+  },
+  "commitMapping": [
+    {
+      "group": "features",
+      "label": "New Features",
+      "emojis": [
+        "sparkles"
+      ]
+    },
+    {
+      "group": "changed",
+      "label": "Optimization",
+      "emojis": [
+        "art",
+        "zap",
+        "fire",
+        "truck",
+        "pencil2",
+        "recycle"
+      ]
+    },
+    {
+      "group": "fixed",
+      "label": "Bug Fixes",
+      "emojis": [
+        "bug",
+        "ambulance"
+      ]
+    },
+    {
+      "group": "visual",
+      "label": "Visual Changes",
+      "emojis": [
+        "lipstick",
+        "dizzy",
+        "iphone",
+        "children_crossing",
+        "speech_balloon",
+        "wheelchair",
+        "bento"
+      ]
+    },
+    {
+      "group": "breaking_changes",
+      "label": "Breaking and Major Changes",
+      "emojis": [
+        "boom",
+        "wastebasket",
+        "building_construction",
+        "tada",
+        "rocket"
+      ]
+    },
+    {
+      "group": "issues",
+      "label": "Known Issues",
+      "emojis": [
+        "goal_net"
 
-			]
-		},
-		{
-			"group": "diagnostics",
-			"label": "Diagnostics",
-			"emojis": [
-				"test_tube",
-				"alembic",
-				"loud_sound",
-				"mute",
-				"chart_with_upwards_trend",
-				"lock",
-				"white_check_mark"
-			]
-		},
-		{
-			"group": "documentation",
-			"label": "Documentation",
-			"emojis": [
-				"bulb",
-				"memo",
-				"page_facing_up",
-				"globe_with_meridians"
-			]
-		},
-		{
-			"group": "dependencies",
-			"label": "Dependency Changes",
-			"emojis": [
-				"heavy_plus_sign",
-				"heavy_minus_sign",
-				"arrow_down",
-				"arrow_up",
-				"alien"
-			]
-		},
-		{
-			"group": "realmisc",
-			"label": "Miscellaneous",
-			"emojis": [
-				"triangular_flag_on_post",
-				"seedling",
-				"label",
-				"mag",
-				"camera_flash",
-				"see_no_evil",
-				"egg",
-				"clown_face",
-				"busts_in_silhouette",
-				"card_file_box",
-				"beers",
-				"poop",
-				"hammer",
-				"wrench"
-			]
-		},
-		{
-			"group": "misc",
-			"label": "Remove",
-			"emojis": [
-				"triangular_flag_on_post",
-				"seedling",
-				"label",
-				"mag",
-				"camera_flash",
-				"see_no_evil",
-				"egg",
-				"clown_face",
-				"busts_in_silhouette",
-				"card_file_box",
-				"beers",
-				"poop",
-				"hammer",
-				"wrench"
-			]
-		},
-		{
-			"group": "added",
-			"label": "Added",
-			"emojis": []
-		},
-		{
-			"group": "deprecated",
-			"label": "Deprecated",
-			"emojis": []
-		},
-		{
-			"group": "removed",
-			"label": "Removed",
-			"emojis": []
-		},
-		{
-			"group": "security",
-			"label": "Security",
-			"emojis": []
-		},
-		{
-			"group": "useless",
-			"label": "Useless",
-			"emojis": [
-				"package",
-				null,
-				"",
-				" "
-			]
-		}
-	]
+      ]
+    },
+    {
+      "group": "diagnostics",
+      "label": "Diagnostics",
+      "emojis": [
+        "test_tube",
+        "alembic",
+        "loud_sound",
+        "mute",
+        "chart_with_upwards_trend",
+        "lock",
+        "white_check_mark"
+      ]
+    },
+    {
+      "group": "documentation",
+      "label": "Documentation",
+      "emojis": [
+        "bulb",
+        "memo",
+        "page_facing_up",
+        "globe_with_meridians"
+      ]
+    },
+    {
+      "group": "dependencies",
+      "label": "Dependency Changes",
+      "emojis": [
+        "heavy_plus_sign",
+        "heavy_minus_sign",
+        "arrow_down",
+        "arrow_up",
+        "alien"
+      ]
+    },
+    {
+      "group": "realmisc",
+      "label": "Miscellaneous",
+      "emojis": [
+        "triangular_flag_on_post",
+        "seedling",
+        "label",
+        "mag",
+        "camera_flash",
+        "see_no_evil",
+        "egg",
+        "clown_face",
+        "busts_in_silhouette",
+        "card_file_box",
+        "beers",
+        "poop",
+        "hammer",
+        "wrench"
+      ]
+    },
+    {
+      "group": "misc",
+      "label": "Remove",
+      "emojis": [
+        "triangular_flag_on_post",
+        "seedling",
+        "label",
+        "mag",
+        "camera_flash",
+        "see_no_evil",
+        "egg",
+        "clown_face",
+        "busts_in_silhouette",
+        "card_file_box",
+        "beers",
+        "poop",
+        "hammer",
+        "wrench"
+      ]
+    },
+    {
+      "group": "added",
+      "label": "Added",
+      "emojis": []
+    },
+    {
+      "group": "deprecated",
+      "label": "Deprecated",
+      "emojis": []
+    },
+    {
+      "group": "removed",
+      "label": "Removed",
+      "emojis": []
+    },
+    {
+      "group": "security",
+      "label": "Security",
+      "emojis": []
+    },
+    {
+      "group": "useless",
+      "label": "Useless",
+      "emojis": [
+        "package",
+        null,
+        "",
+        " "
+      ]
+    }
+  ]
 }

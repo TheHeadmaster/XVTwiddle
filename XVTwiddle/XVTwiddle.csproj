@@ -48,11 +48,6 @@
     <PackageReference Include="SerilogAnalyzer" Version="0.15.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\Images\Quartz.ico" />
-    <Resource Include="Resources\Images\Quartz.png" />
-  </ItemGroup>
-
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="copy &quot;$(SolutionDir)CHANGELOG.md&quot; /b &quot;$(SolutionDir)XVTwiddle\Resources\Documents\CHANGELOG.md&quot; /y" />
   </Target>
