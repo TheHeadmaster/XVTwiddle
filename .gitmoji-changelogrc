@@ -2,7 +2,7 @@
   "project": {
     "name": "xvtwiddle",
     "description": "All in one program to create mods for Xenoverse 2.",
-    "version": "1.1.1-alpha"
+    "version": "1.1.2-alpha"
   },
   "commitMapping": [
     {
