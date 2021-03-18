@@ -1,6 +1,6 @@
 
 
-[![Version][versionimage]][changelog] ![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/TheHeadmaster/XVTwiddle?color=%23aa00aa) ![GitHub last commit](https://img.shields.io/github/last-commit/theheadmaster/XVTwiddle/1.1.1-alpha?color=aa00aa) ![Travis (.com)](https://img.shields.io/travis/com/theheadmaster/XVTwiddle) [![GHUBR][latestreleaseimage]][ghublatestrelease] ![GitHub issues](https://img.shields.io/github/issues-raw/TheHeadmaster/xvtwiddle) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/TheHeadmaster/XVTwiddle) ![GitHub](https://img.shields.io/github/license/TheHeadmaster/xvtwiddle) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/TheHeadmaster/xvtwiddle/graphs/commit-activity)
+[![Version][versionimage]][changelog] ![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/TheHeadmaster/XVTwiddle?color=%23aa00aa) ![GitHub last commit](https://img.shields.io/github/last-commit/theheadmaster/XVTwiddle/1.1.1-alpha?color=aa00aa) ![Travis (.com)](https://img.shields.io/travis/com/theheadmaster/XVTwiddle) [![GHUBR][latestreleaseimage]][ghublatestrelease] ![GitHub issues](https://img.shields.io/github/issues-raw/TheHeadmaster/xvtwiddle) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/TheHeadmaster/XVTwiddle) ![GitHub](https://img.shields.io/github/license/TheHeadmaster/xvtwiddle) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/TheHeadmaster/xvtwiddle/graphs/commit-activity) ![Discord](https://img.shields.io/discord/206522782941446145?color=aa00aa&label=Discord)
 
 ![AWIP](https://unpkg.com/vvwip/AWIP.svg)
 
@@ -23,4 +23,4 @@ This project is usable, but please be aware that it is in alpha stage, and, as a
 
 Please see the releases section to download the latest version as an installer.
 
-For support, please open an issue ticket. If you wish to support the grind, I have a [Ko-Fi](https://ko-fi.com/theheadmaster)! Your support is appreciated.
+For support, please open an issue ticket or join [The Parable Universe](https://discord.gg/7fHxTe6) Discord server. If you wish to support the grind, I have a [Ko-Fi](https://ko-fi.com/theheadmaster)! Your support is appreciated.
