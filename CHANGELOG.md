@@ -1,7 +1,7 @@
 # Changelog
 
-<a name="1.1.1-alpha"></a>
-## 1.1.1-alpha (2021-03-16)
+<a name="1.1.2-alpha"></a>
+## 1.1.2-alpha (2021-03-18)
 
 ### Breaking and Major Changes
 
