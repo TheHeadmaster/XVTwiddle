@@ -1,657 +1,326 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-	<Product Id="*" Name="XVTwiddle" Language="1033" Version="!(bind.fileVersion.XVTwiddle.Exe)" Manufacturer="The Parable Group" UpgradeCode="6ca4d840-9568-438a-a7fb-38a824ef96ca">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define XVTwiddle_TargetDir=$(var.XVTwiddle.TargetDir)?>
+  <Product Id="*" Name="XVTwiddle" Language="1033" Version="!(bind.fileVersion.XVTwiddle.Exe)" Manufacturer="The Parable Group" UpgradeCode="7c4bbb13-e639-4623-8169-4f13d77b0152">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate EmbedCab="yes" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
 
-		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-		<UIRef Id="WixUI_InstallDir" />
-		<WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
 
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="DesktopFolder" Name="Desktop">
-				<Component Id="ApplicationShortcutDesktop">
-					<Shortcut Id="ApplicationDesktopShortcut"
-						Name="XVTwiddle"
-						Description="XVTwiddle."
-						Target="[INSTALLFOLDER]XVTwiddle.exe"
-						WorkingDirectory="TARGETDIR" />
-					<RemoveFolder Id="DesktopFolder" On="uninstall" />
-					<RegistryValue
-						Root="HKCU"
-						Key="Software/XVTwiddle"
-						Name="installed"
-						Type="integer"
-						Value="1"
-						KeyPath="yes" />
-				</Component>
-			</Directory>
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="XVTwiddle" FileSource="Source">
-					<Directory Id="BlankTemplateFolder" Name="Blank Template" />
-					<Directory Id="XLCAESFolder" Name="ca-ES" />
-					<Directory Id="XLCSFolder" Name="cs" />
-					<Directory Id="XLCSCZFolder" Name="cs-CZ" />
-					<Directory Id="XLDEFolder" Name="de" />
-					<Directory Id="XLESFolder" Name="es" />
-					<Directory Id="XLFRFolder" Name="fr" />
-					<Directory Id="XLHUFolder" Name="hu" />
-					<Directory Id="XLITFolder" Name="it" />
-					<Directory Id="XLJAFolder" Name="ja" />
-					<Directory Id="XLKOFolder" Name="ko" />
-					<Directory Id="XLNLBEFolder" Name="nl-BE" />
-					<Directory Id="XLPLFolder" Name="pl" />
-					<Directory Id="XLPTBRFolder" Name="pt-BR" />
-					<Directory Id="XLROFolder" Name="ro" />
-					<Directory Id="XLRUFolder" Name="ru" />
-					<Directory Id="XLTRFolder" Name="tr" />
-					<Directory Id="XLSVFolder" Name="sv" />
-					<Directory Id="XLZHHANSFolder" Name="zh-HANS" />
-					<Directory Id="XLZHHANTFolder" Name="zh-HANT" />
-					<Component>
-						<File Id="XVTwiddle.exe" KeyPath="yes" />
-					</Component>
-				</Directory>
-			</Directory>
-			<Directory Id="ProgramMenuFolder">
-				<Directory Id="ApplicationProgramsFolder" Name="XVTwiddle" />
-			</Directory>
-		</Directory>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="DesktopFolder" Name="Desktop">
+        <Component Id="ApplicationShortcutDesktop">
+          <RemoveFolder Id="DesktopFolder" On="uninstall" />
+          <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\XVTwiddle" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="XVTwiddle">
+          <Component>
+            <File Id="XVTwiddle.exe" KeyPath="yes" Source="$(var.XVTwiddle_TargetDir)XVTwiddle.exe">
+              <Shortcut Id="ApplicationDesktopShortcut" Advertise="yes" Name="XVTwiddle" Description="XVTwiddle." Directory="DesktopFolder" WorkingDirectory="INSTALLFOLDER" />
+              <Shortcut Id="ApplicationStartMenuShortcut" Advertise="yes" Name="XVTwiddle" Description="XVTwiddle." Directory="ApplicationProgramsFolder" WorkingDirectory="INSTALLFOLDER" Icon="XVTwiddle.ico" IconIndex="0" Show="normal">
+                <ShortcutProperty Key="System.AppUserModel.ID" Value="TheParableGroup.XVTwiddle.exe" />
+              </Shortcut>
+            </File>
+          </Component>
+          <Directory Id="ca_ES" Name="ca-ES" />
+          <Directory Id="cs_CZ" Name="cs-CZ" />
+          <Directory Id="de" Name="de" />
+          <Directory Id="es" Name="es" />
+          <Directory Id="fr" Name="fr" />
+          <Directory Id="hu" Name="hu" />
+          <Directory Id="it" Name="it" />
+          <Directory Id="ja" Name="ja" />
+          <Directory Id="ko" Name="ko" />
+          <Directory Id="nl_BE" Name="nl-BE" />
+          <Directory Id="pl" Name="pl" />
+          <Directory Id="pt_BR" Name="pt-BR" />
+          <Directory Id="ro" Name="ro" />
+          <Directory Id="ru" Name="ru" />
+          <Directory Id="sv" Name="sv" />
+          <Directory Id="zh_Hans" Name="zh-Hans" />
+          <Directory Id="zh_Hant" Name="zh-Hant" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="XVTwiddle">
+          <Component Id="ApplicationShortcut" Guid="FC7E4667-9BCE-49D1-A143-A9FBE213CC7B">
 
-		<DirectoryRef Id="ApplicationProgramsFolder">
-			<Component Id="ApplicationShortcut">
-				<Shortcut Id="ApplicationStartMenuShortcut"  Name="XVTwiddle" Description="XVTwiddle" Target="[#XVTwiddle.exe]" WorkingDirectory="INSTALLFOLDER">
-					<ShortcutProperty Id="ShortcutProperty.XVTwiddleExe" Key="System.AppUserModel.ID" Value="AppUserModelId" />
-				</Shortcut>
-				<Shortcut Id="UninstallProduct" Name="Uninstall XVTwiddle" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Description="Uninstalls XVTwiddle." />
-				<RemoveFolder Id="CleanupShortcut" Directory="ApplicationProgramsFolder" On="uninstall" />
-				<RegistryValue Root="HKCU" Key="Software\TheParableGroup\XVTwiddle" Name="installed" Type="integer" Value="1" KeyPath="yes" />
-			</Component>
-		</DirectoryRef>
+            <Shortcut Id="UninstallProduct" Name="Uninstall XVTwiddle" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Description="Uninstalls XVTwiddle." />
+            <RemoveFolder Id="CleanupShortcut" Directory="ApplicationProgramsFolder" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\XVTwiddle" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
 
-		<Feature Id="Complete" Title="XVTwiddle" Display="expand" Level="1" ConfigurableDirectory="INSTALLFOLDER">
-			<Feature Id="ProductFeature" Title="XVTwiddle" Level="1">
-				<ComponentGroupRef Id="ProductComponents" />
-				<ComponentGroupRef Id="TemplateComponents" />
-				<ComponentGroupRef Id="CAESLocalizationComponents" />
-				<ComponentGroupRef Id="CSLocalizationComponents" />
-				<ComponentGroupRef Id="CSCZLocalizationComponents" />
-				<ComponentGroupRef Id="DELocalizationComponents" />
-				<ComponentGroupRef Id="ESLocalizationComponents" />
-				<ComponentGroupRef Id="FRLocalizationComponents" />
-				<ComponentGroupRef Id="HULocalizationComponents" />
-				<ComponentGroupRef Id="ITLocalizationComponents" />
-				<ComponentGroupRef Id="JALocalizationComponents" />
-				<ComponentGroupRef Id="KOLocalizationComponents" />
-				<ComponentGroupRef Id="NLBELocalizationComponents" />
-				<ComponentGroupRef Id="PLLocalizationComponents" />
-				<ComponentGroupRef Id="PTBRLocalizationComponents" />
-				<ComponentGroupRef Id="ROLocalizationComponents" />
-				<ComponentGroupRef Id="RULocalizationComponents" />
-				<ComponentGroupRef Id="TRLocalizationComponents" />
-				<ComponentGroupRef Id="SVLocalizationComponents" />
-				<ComponentGroupRef Id="ZHHANSLocalizationComponents" />
-				<ComponentGroupRef Id="ZHHANTLocalizationComponents" />
-				<ComponentRef Id="ApplicationShortcut" />
-				<ComponentRef Id="ApplicationShortcutDesktop" />
-				<ComponentRef Id="XVTwiddle.exe" />
-			</Feature>
-		</Feature>
-	</Product>
+    <Feature Id="Complete" Title="XVTwiddle" Display="expand" Level="1" ConfigurableDirectory="INSTALLFOLDER">
+      <Feature Id="ProductFeature" Title="XVTwiddle" Level="1">
+        <ComponentGroupRef Id="ProductComponents" />
+        <ComponentRef Id="ApplicationShortcut" />
+        <ComponentRef Id="ApplicationShortcutDesktop" />
+        <ComponentRef Id="XVTwiddle.exe" />
+      </Feature>
+      <ComponentGroupRef Id="ca_ES_files" />
+      <ComponentGroupRef Id="cs_CZ_files" />
+      <ComponentGroupRef Id="de_files" />
+      <ComponentGroupRef Id="es_files" />
+      <ComponentGroupRef Id="fr_files" />
+      <ComponentGroupRef Id="hu_files" />
+      <ComponentGroupRef Id="it_files" />
+      <ComponentGroupRef Id="ja_files" />
+      <ComponentGroupRef Id="ko_files" />
+      <ComponentGroupRef Id="nl_BE_files" />
+      <ComponentGroupRef Id="pl_files" />
+      <ComponentGroupRef Id="pt_BR_files" />
+      <ComponentGroupRef Id="ro_files" />
+      <ComponentGroupRef Id="ru_files" />
+      <ComponentGroupRef Id="sv_files" />
+      <ComponentGroupRef Id="zh_Hans_files" />
+      <ComponentGroupRef Id="zh_Hant_files" />
+    </Feature>
+  </Product>
+  <Fragment>
+    <Icon Id="XVTwiddle.ico" SourceFile="XVTwiddle.ico" />
+    <Property Id="ARPPRODUCTICON" Value="XVTwiddle.ico" />
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <!-- <Component Id="ProductComponent"> -->
+      <!-- TODO: Insert files, registry keys, and other resources here. -->
+      <!-- </Component> -->
 
-	<Fragment>
-		<Icon Id="XVTwiddle.ico" SourceFile="XVTwiddle.ico" />
-		<Property Id="APPRODUCTICON" Value="XVTwiddle.ico" />
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER" Source="Source">
-
-			<!-- XVTwiddle Files -->
-			<Component>
-				<File Name="XVTwiddle.Core.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="XVTwiddle.Core.pdb" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="XVTwiddle.deps.json" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="XVTwiddle.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="XVTwiddle.dll.config" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="XVTwiddle.pdb" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="XVTwiddle.runtimeconfig.json" KeyPath="yes" />
-			</Component>
-
-			<!-- Exceed Files -->
-			<Component>
-				<File Name="AvalonDock.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="AvalonDock.Themes.VS2013.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="DotNetProjects.Wpf.Extended.Toolkit.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="ICSharpCode.AvalonEdit.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- Reactive Files -->
-			<Component>
-				<File Name="ReactiveUI.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="ReactiveUI.Events.WPF.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="ReactiveUI.Fody.Helpers.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="ReactiveUI.Validation.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="ReactiveUI.WPF.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Splat.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="System.Reactive.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="System.Reactive.xml" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="DynamicData.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Pharmacist.Common.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="ReactiveUI.Testing.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Microsoft.Reactive.Testing.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- FluentValidation Files -->
-			<Component>
-				<File Name="FluentValidation.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- Fody Files -->
-			<Component>
-				<File Name="MethodBoundaryAspect.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- Nuget Files -->
-			<Component>
-				<File Name="Nuget.Versioning.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.Common.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.Configuration.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.DependencyResolver.Core.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.Frameworks.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.LibraryModel.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.Packaging.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.ProjectModel.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Nuget.Protocol.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- Newtonsoft Files -->
-			<Component>
-				<File Name="Newtonsoft.Json.dll" KeyPath="yes" />
-			</Component>
-
-
-			<!--- Serilog Files -->
-
-			<Component>
-				<File Name="Serilog.dll" KeyPath="yes" />
-			</Component>
-
-			<Component>
-				<File Name="Serilog.Exceptions.dll" KeyPath="yes" />
-			</Component>
-
-			<Component>
-				<File Name="Serilog.Formatting.Compact.dll" KeyPath="yes" />
-			</Component>
-
-			<Component>
-				<File Name="Serilog.Sinks.Console.dll" KeyPath="yes" />
-			</Component>
-
-			<Component>
-				<File Name="Serilog.Sinks.Debug.dll" KeyPath="yes" />
-			</Component>
-
-			<Component>
-				<File Name="Serilog.Sinks.File.dll" KeyPath="yes" />
-			</Component>
-
-			<Component>
-				<File Name="Serilog.Sinks.PeriodicBatching.dll" KeyPath="yes" />
-			</Component>
-
-			<Component>
-				<File Name="Serilog.Sinks.Seq.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- UI Files -->
-			<Component>
-				<File Name="Microsoft.WindowsAPICodePack.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Microsoft.WindowsAPICodePack.Shell.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="FontAwesome5.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="FontAwesome5.Net.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- Librarium Files -->
-			<Component>
-				<File Name="Librarium.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Librarium.WPF.dll" KeyPath="yes" />
-			</Component>
-
-			<!-- Octokit Github Files -->
-			<Component>
-				<File Name="Octokit.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Name="Octokit.Reactive.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-
-		<ComponentGroup Id="CAESLocalizationComponents" Directory="XLCAESFolder" Source="Source\ca-ES">
-			<Component>
-				<File Id="CAES.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="CSLocalizationComponents" Directory="XLCSFolder" Source="Source\cs">
-			<Component>
-				<File Id="CS.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="CS.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="CS.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="CS.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="CS.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="CS.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="CS.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="CSCZLocalizationComponents" Directory="XLCSCZFolder" Source="Source\cs-CZ">
-			<Component>
-				<File Id="CSCZ.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="DELocalizationComponents" Directory="XLDEFolder" Source="Source\de">
-			<Component>
-				<File Id="DE.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="DE.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="DE.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="DE.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="DE.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="DE.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="DE.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="DE.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="ESLocalizationComponents" Directory="XLESFolder" Source="Source\es">
-			<Component>
-				<File Id="ES.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ES.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ES.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ES.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ES.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ES.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ES.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ES.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="FRLocalizationComponents" Directory="XLFRFolder" Source="Source\fr">
-			<Component>
-				<File Id="FR.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="FR.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="FR.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="FR.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="FR.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="FR.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="FR.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="FR.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="HULocalizationComponents" Directory="XLHUFolder" Source="Source\hu">
-			<Component>
-				<File Id="HU.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="ITLocalizationComponents" Directory="XLITFolder" Source="Source\it">
-			<Component>
-				<File Id="IT.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="IT.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="IT.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="IT.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="IT.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="IT.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="IT.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="IT.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="JALocalizationComponents" Directory="XLJAFolder" Source="Source\ja">
-			<Component>
-				<File Id="JA.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="JA.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="JA.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="JA.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="JA.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="JA.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="JA.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="JA.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="KOLocalizationComponents" Directory="XLKOFolder" Source="Source\ko">
-			<Component>
-				<File Id="KO.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="KO.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="KO.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="KO.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="KO.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="KO.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="KO.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="KO.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="NLBELocalizationComponents" Directory="XLNLBEFolder" Source="Source\nl-BE">
-			<Component>
-				<File Id="NLBE.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="PLLocalizationComponents" Directory="XLPLFolder" Source="Source\pl">
-			<Component>
-				<File Id="PL.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PL.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PL.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PL.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PL.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PL.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PL.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PL.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="PTBRLocalizationComponents" Directory="XLPTBRFolder" Source="Source\pt-BR">
-			<Component>
-				<File Id="PTBR.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PTBR.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PTBR.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PTBR.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PTBR.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PTBR.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PTBR.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="PTBR.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="ROLocalizationComponents" Directory="XLROFolder" Source="Source\ro">
-			<Component>
-				<File Id="RO.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="RULocalizationComponents" Directory="XLRUFolder" Source="Source\ru">
-			<Component>
-				<File Id="RU.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="RU.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="RU.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="RU.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="RU.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="RU.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="RU.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="RU.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="SVLocalizationComponents" Directory="XLSVFolder" Source="Source\sv">
-			<Component>
-				<File Id="SV.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="TRLocalizationComponents" Directory="XLTRFolder" Source="Source\tr">
-			<Component>
-				<File Id="TR.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="TR.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="TR.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="TR.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="TR.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="TR.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="TR.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="ZHHANSLocalizationComponents" Directory="XLZHHANSFolder" Source="Source\zh-Hans">
-			<Component>
-				<File Id="ZHHANS.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANS.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANS.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANS.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANS.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANS.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANS.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANS.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-		<ComponentGroup Id="ZHHANTLocalizationComponents" Directory="XLZHHANTFolder" Source="Source\zh-Hant">
-			<Component>
-				<File Id="ZHHANT.AvalonDock.resources.dll" Name="AvalonDock.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANT.Microsoft.CodeAnalysis.CSharp.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANT.Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANT.Microsoft.CodeAnalysis.resources.dll" Name="Microsoft.CodeAnalysis.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANT.Microsoft.CodeAnalysis.VisualBasic.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANT.Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANT.Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll" KeyPath="yes" />
-			</Component>
-			<Component>
-				<File Id="ZHHANT.Microsoft.CodeAnalysis.Workspaces.resources.dll" Name="Microsoft.CodeAnalysis.Workspaces.resources.dll" KeyPath="yes" />
-			</Component>
-		</ComponentGroup>
-	</Fragment>
+      <Component Id="FontAwesome5.dll" Guid="74D5E1F7-314B-4425-A8A5-A4BDF7BC3BBD">
+        <File Id="FontAwesome5.dll" Name="FontAwesome5.dll" Source="$(var.XVTwiddle_TargetDir)FontAwesome5.dll" />
+      </Component>
+      <Component Id="FontAwesome5.Net.dll" Guid="1556103E-80CF-467A-8CF5-B98D943B5680">
+        <File Id="FontAwesome5.Net.dll" Name="FontAwesome5.Net.dll" Source="$(var.XVTwiddle_TargetDir)FontAwesome5.Net.dll" />
+      </Component>
+      <Component Id="ICSharpCode.AvalonEdit.dll" Guid="5639B65C-7527-4FF6-86B1-E141BB2950A5">
+        <File Id="ICSharpCode.AvalonEdit.dll" Name="ICSharpCode.AvalonEdit.dll" Source="$(var.XVTwiddle_TargetDir)ICSharpCode.AvalonEdit.dll" />
+      </Component>
+      <Component Id="Microsoft.Reactive.Testing.dll" Guid="903462DB-124F-4247-99A3-7B46BA3DC8DD">
+        <File Id="Microsoft.Reactive.Testing.dll" Name="Microsoft.Reactive.Testing.dll" Source="$(var.XVTwiddle_TargetDir)Microsoft.Reactive.Testing.dll" />
+      </Component>
+      <Component Id="Octokit.Reactive.dll" Guid="79B0A56D-BA1A-4682-93BD-1900D265B972">
+        <File Id="Octokit.Reactive.dll" Name="Octokit.Reactive.dll" Source="$(var.XVTwiddle_TargetDir)Octokit.Reactive.dll" />
+      </Component>
+      <Component Id="Pharmacist.Common.dll" Guid="75E3C173-AAE2-4A24-8668-207CC0017C41">
+        <File Id="Pharmacist.Common.dll" Name="Pharmacist.Common.dll" Source="$(var.XVTwiddle_TargetDir)Pharmacist.Common.dll" />
+      </Component>
+      <Component Id="ReactiveUI.Events.WPF.dll" Guid="604EBF82-06E1-4676-9F5A-4DBD1745299B">
+        <File Id="ReactiveUI.Events.WPF.dll" Name="ReactiveUI.Events.WPF.dll" Source="$(var.XVTwiddle_TargetDir)ReactiveUI.Events.WPF.dll" />
+      </Component>
+      <Component Id="ReactiveUI.Testing.dll" Guid="C652602B-6F68-4E08-B648-94D9A648F398">
+        <File Id="ReactiveUI.Testing.dll" Name="ReactiveUI.Testing.dll" Source="$(var.XVTwiddle_TargetDir)ReactiveUI.Testing.dll" />
+      </Component>
+      <Component Id="ReactiveUI.Validation.dll" Guid="B17C57DD-E6AE-40C5-AB89-5362532B294A">
+        <File Id="ReactiveUI.Validation.dll" Name="ReactiveUI.Validation.dll" Source="$(var.XVTwiddle_TargetDir)ReactiveUI.Validation.dll" />
+      </Component>
+      <Component Id="Serilog.Exceptions.dll" Guid="2EE3DD5C-4D77-4123-A5EA-0759BE723176">
+        <File Id="Serilog.Exceptions.dll" Name="Serilog.Exceptions.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.Exceptions.dll" />
+      </Component>
+      <Component Id="XVTwiddle.runtimeconfig.json" Guid="0ccce5dc-bbff-472f-a23b-9260d4a4fdf3">
+        <File Id="XVTwiddle.runtimeconfig.json" Name="XVTwiddle.runtimeconfig.json" Source="$(var.XVTwiddle_TargetDir)XVTwiddle.runtimeconfig.json" />
+      </Component>
+      <Component Id="Microsoft.WindowsAPICodePack.dll" Guid="1333c812-6724-4219-8709-388812eaa9f7">
+        <File Id="Microsoft.WindowsAPICodePack.dll" Name="Microsoft.WindowsAPICodePack.dll" Source="$(var.XVTwiddle_TargetDir)Microsoft.WindowsAPICodePack.dll" />
+      </Component>
+      <Component Id="Serilog.Sinks.File.dll" Guid="b134dc4c-6083-498a-ae4d-be868780af0b">
+        <File Id="Serilog.Sinks.File.dll" Name="Serilog.Sinks.File.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.Sinks.File.dll" />
+      </Component>
+      <Component Id="Serilog.Formatting.Compact.dll" Guid="8aaf4127-dccc-4047-a20a-914f4c623d2b">
+        <File Id="Serilog.Formatting.Compact.dll" Name="Serilog.Formatting.Compact.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.Formatting.Compact.dll" />
+      </Component>
+      <Component Id="Serilog.Sinks.Seq.dll" Guid="652d4d8c-5764-4def-9d64-799a726b8376">
+        <File Id="Serilog.Sinks.Seq.dll" Name="Serilog.Sinks.Seq.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.Sinks.Seq.dll" />
+      </Component>
+      <Component Id="Serilog.Sinks.Debug.dll" Guid="30ff4fcb-8983-4fc2-a3c9-e84e5a40f453">
+        <File Id="Serilog.Sinks.Debug.dll" Name="Serilog.Sinks.Debug.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.Sinks.Debug.dll" />
+      </Component>
+      <Component Id="Splat.dll" Guid="a4b65d36-bc67-4ea7-b1e3-48519e09a768">
+        <File Id="Splat.dll" Name="Splat.dll" Source="$(var.XVTwiddle_TargetDir)Splat.dll" />
+      </Component>
+      <Component Id="Serilog.dll" Guid="a73e87f9-ea68-431f-9e9e-1f5cdd9d2184">
+        <File Id="Serilog.dll" Name="Serilog.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.dll" />
+      </Component>
+      <Component Id="Serilog.Sinks.Console.dll" Guid="a9c15abc-019e-4e8b-b45c-d9fead40d00c">
+        <File Id="Serilog.Sinks.Console.dll" Name="Serilog.Sinks.Console.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.Sinks.Console.dll" />
+      </Component>
+      <Component Id="MethodBoundaryAspect.dll" Guid="0778aa62-e203-43df-92ef-449faffe21a2">
+        <File Id="MethodBoundaryAspect.dll" Name="MethodBoundaryAspect.dll" Source="$(var.XVTwiddle_TargetDir)MethodBoundaryAspect.dll" />
+      </Component>
+      <Component Id="Librarium.dll" Guid="fc572dc9-23f4-43ce-88fd-6d1573600c43">
+        <File Id="Librarium.dll" Name="Librarium.dll" Source="$(var.XVTwiddle_TargetDir)Librarium.dll" />
+      </Component>
+      <Component Id="FluentValidation.dll" Guid="d28941f5-94dd-4d2b-b148-3510d3653edf">
+        <File Id="FluentValidation.dll" Name="FluentValidation.dll" Source="$(var.XVTwiddle_TargetDir)FluentValidation.dll" />
+      </Component>
+      <Component Id="Octokit.dll" Guid="76d94543-0ca9-4166-89d4-0467838a8f7a">
+        <File Id="Octokit.dll" Name="Octokit.dll" Source="$(var.XVTwiddle_TargetDir)Octokit.dll" />
+      </Component>
+      <Component Id="ReactiveUI.Fody.Helpers.dll" Guid="d2f2c6b1-9348-4cff-a5e5-27b16f1b5be5">
+        <File Id="ReactiveUI.Fody.Helpers.dll" Name="ReactiveUI.Fody.Helpers.dll" Source="$(var.XVTwiddle_TargetDir)ReactiveUI.Fody.Helpers.dll" />
+      </Component>
+      <Component Id="System.Reactive.dll" Guid="7904ef3c-5a12-4985-8a70-943b6c5dcc7c">
+        <File Id="System.Reactive.dll" Name="System.Reactive.dll" Source="$(var.XVTwiddle_TargetDir)System.Reactive.dll" />
+      </Component>
+      <Component Id="Microsoft.WindowsAPICodePack.Shell.dll" Guid="2354b61e-790c-4250-94d3-6fcb0799bea4">
+        <File Id="Microsoft.WindowsAPICodePack.Shell.dll" Name="Microsoft.WindowsAPICodePack.Shell.dll" Source="$(var.XVTwiddle_TargetDir)Microsoft.WindowsAPICodePack.Shell.dll" />
+      </Component>
+      <Component Id="DynamicData.dll" Guid="499312dc-4393-404a-b3b9-38c2fa5183cf">
+        <File Id="DynamicData.dll" Name="DynamicData.dll" Source="$(var.XVTwiddle_TargetDir)DynamicData.dll" />
+      </Component>
+      <Component Id="ReactiveUI.dll" Guid="7cb420b9-5fb1-4a2d-892f-455135ce0d69">
+        <File Id="ReactiveUI.dll" Name="ReactiveUI.dll" Source="$(var.XVTwiddle_TargetDir)ReactiveUI.dll" />
+      </Component>
+      <Component Id="ReactiveUI.WPF.dll" Guid="49f667c3-7442-4317-9818-13e5a83a3556">
+        <File Id="ReactiveUI.WPF.dll" Name="ReactiveUI.WPF.dll" Source="$(var.XVTwiddle_TargetDir)ReactiveUI.WPF.dll" />
+      </Component>
+      <Component Id="DotNetProjects.Wpf.Extended.Toolkit.dll" Guid="75f4d3b4-9d76-418c-ad4d-9dfd8e0ffc20">
+        <File Id="DotNetProjects.Wpf.Extended.Toolkit.dll" Name="DotNetProjects.Wpf.Extended.Toolkit.dll" Source="$(var.XVTwiddle_TargetDir)DotNetProjects.Wpf.Extended.Toolkit.dll" />
+      </Component>
+      <Component Id="Librarium.WPF.dll" Guid="a14b06ae-36ed-4ea6-9566-3533849103e0">
+        <File Id="Librarium.WPF.dll" Name="Librarium.WPF.dll" Source="$(var.XVTwiddle_TargetDir)Librarium.WPF.dll" />
+      </Component>
+      <Component Id="AvalonDock.dll" Guid="e1f393a2-742a-4735-af28-5f6956e09072">
+        <File Id="AvalonDock.dll" Name="AvalonDock.dll" Source="$(var.XVTwiddle_TargetDir)AvalonDock.dll" />
+      </Component>
+      <Component Id="AvalonDock.Themes.VS2013.dll" Guid="7bff1dfe-a942-415f-9906-01e3bda57fe1">
+        <File Id="AvalonDock.Themes.VS2013.dll" Name="AvalonDock.Themes.VS2013.dll" Source="$(var.XVTwiddle_TargetDir)AvalonDock.Themes.VS2013.dll" />
+      </Component>
+      <Component Id="XVTwiddle.dll" Guid="c988a0f8-2ce0-4776-b0cd-c5f0d4d7d700">
+        <File Id="XVTwiddle.dll" Name="XVTwiddle.dll" Source="$(var.XVTwiddle_TargetDir)XVTwiddle.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="b386d575-f9d5-49f9-a7fc-447115839d54">
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.XVTwiddle_TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="Serilog.Sinks.PeriodicBatching.dll" Guid="0a56abc4-bcf7-463f-953d-1d10fe342712">
+        <File Id="Serilog.Sinks.PeriodicBatching.dll" Name="Serilog.Sinks.PeriodicBatching.dll" Source="$(var.XVTwiddle_TargetDir)Serilog.Sinks.PeriodicBatching.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ca_ES_files" Directory="ca_ES">
+      <Component Id="ca_ES_AvalonDock.resources.dll" Guid="f5149aea-067b-493b-a5d3-182d4bebe4f8">
+        <File Id="ca_ES_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)ca-ES\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="cs_CZ_files" Directory="cs_CZ">
+      <Component Id="cs_CZ_AvalonDock.resources.dll" Guid="8f469c69-7251-4b9b-a6c2-965d31551cd2">
+        <File Id="cs_CZ_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)cs-CZ\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="de_files" Directory="de">
+      <Component Id="de_AvalonDock.resources.dll" Guid="68a3cc85-9e22-4aa0-a479-cadcfb5786ad">
+        <File Id="de_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)de\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="es_files" Directory="es">
+      <Component Id="es_AvalonDock.resources.dll" Guid="845f90ec-8823-4118-901b-65d72068e20b">
+        <File Id="es_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)es\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="fr_files" Directory="fr">
+      <Component Id="fr_AvalonDock.resources.dll" Guid="cb4bc265-f0a6-49f2-ad16-e10056fe6249">
+        <File Id="fr_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)fr\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="hu_files" Directory="hu">
+      <Component Id="hu_AvalonDock.resources.dll" Guid="cf776fa6-9532-4eee-a262-3c59bf071c0b">
+        <File Id="hu_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)hu\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="it_files" Directory="it">
+      <Component Id="it_AvalonDock.resources.dll" Guid="522c1eb2-e343-4358-88cb-7e32a1e02c74">
+        <File Id="it_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)it\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ja_files" Directory="ja">
+      <Component Id="ja_AvalonDock.resources.dll" Guid="b9716703-640c-4b87-add2-3342adb2c595">
+        <File Id="ja_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)ja\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ko_files" Directory="ko">
+      <Component Id="ko_AvalonDock.resources.dll" Guid="532e0ed6-a5d5-434e-80f8-4c3961910ca1">
+        <File Id="ko_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)ko\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="nl_BE_files" Directory="nl_BE">
+      <Component Id="nl_BE_AvalonDock.resources.dll" Guid="107399a4-2c61-44e8-b950-3ddf68674413">
+        <File Id="nl_BE_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)nl-BE\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="pl_files" Directory="pl">
+      <Component Id="pl_AvalonDock.resources.dll" Guid="f97b275c-cd71-4a2d-8cd5-c5724998c46c">
+        <File Id="pl_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)pl\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="pt_BR_files" Directory="pt_BR">
+      <Component Id="pt_BR_AvalonDock.resources.dll" Guid="4467900f-626e-41f1-8202-498eee00e0b2">
+        <File Id="pt_BR_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)pt-BR\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ro_files" Directory="ro">
+      <Component Id="ro_AvalonDock.resources.dll" Guid="f80bbb7a-b0fb-4ed2-96bc-0662dad5a1a0">
+        <File Id="ro_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)ro\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ru_files" Directory="ru">
+      <Component Id="ru_AvalonDock.resources.dll" Guid="f0a264c3-be03-4eae-83d3-cf68876e57d1">
+        <File Id="ru_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)ru\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="sv_files" Directory="sv">
+      <Component Id="sv_AvalonDock.resources.dll" Guid="4f9ad0ab-c6ce-4456-8a34-1b939edac4f3">
+        <File Id="sv_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)sv\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="zh_Hans_files" Directory="zh_Hans">
+      <Component Id="zh_Hans_AvalonDock.resources.dll" Guid="f712afc6-0b88-4327-bdf3-d644a484adf3">
+        <File Id="zh_Hans_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)zh-Hans\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="zh_Hant_files" Directory="zh_Hant">
+      <Component Id="zh_Hant_AvalonDock.resources.dll" Guid="2bb22eee-2092-480b-aed4-5eda76bdc126">
+        <File Id="zh_Hant_AvalonDock.resources.dll" Name="AvalonDock.resources.dll" Source="$(var.XVTwiddle_TargetDir)zh-Hant\AvalonDock.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
 </Wix>
