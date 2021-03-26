@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using XVTwiddle.UI;
 
 namespace XVTwiddle.Windows
 {
@@ -72,6 +73,16 @@ namespace XVTwiddle.Windows
                     view => view.BrowseButton)
                 .DisposeWith(dispose);
             });
+
+            this.Closed += this.NewProjectWindow_Closed;
+            App.Metadata.StatusBarColor = StatusBarColor.Processing;
+            App.Metadata.StatusBarMessage = "Window Modal";
+        }
+
+        private void NewProjectWindow_Closed(object sender, EventArgs args)
+        {
+            App.Metadata.StatusBarColor = StatusBarColor.Idle;
+            App.Metadata.StatusBarMessage = "Ready";
         }
     }
 }

@@ -124,13 +124,10 @@ namespace XVTwiddle.ViewModels
 
         public async Task CreateProjectAsync()
         {
-            //List<PackTemplate> packTemplates = this.PackTemplates.Where(x => x.IsSelected).Select(x => x.Pack).ToList();
-            //
-            //Project project = TemplateManager.CreateFromTemplates(
-            //    this.SelectedCoreTemplate!, this.SelectedUITemplate!, packTemplates, this.ProjectPath, this.ProjectName);
-            //await project.Load();
-            //project.Save();
-            //await App.Metadata.ChangeCurrentProject(project);
+            Project project = new Project { FileName = "Project.json", FilePath = this.ProjectPath, Name = this.ProjectName, Version = App.Metadata.Version };
+            await project.Load();
+            project.Save();
+            await App.Metadata.ChangeCurrentProject(project);
         }
     }
 }
