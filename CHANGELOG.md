@@ -11,7 +11,3 @@
 - 🎉 Test Line 2.
 [[d7ae087](https://github.com/TheHeadmaster/XVTwiddle/commit/d7ae0878ea8924305b76864dd517fa1e4ec53692)]
 - 🎉 Fully set up repository.
-
-
-
-
