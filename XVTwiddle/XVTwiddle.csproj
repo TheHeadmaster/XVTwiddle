@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>1.1.2.58</AssemblyVersion>
-    <FileVersion>1.1.2.58</FileVersion>
+    <AssemblyVersion>1.1.2.59</AssemblyVersion>
+    <FileVersion>1.1.2.59</FileVersion>
     <LangVersion>9.0</LangVersion>
     <ApplicationIcon>Resources\Images\XVTwiddle.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
